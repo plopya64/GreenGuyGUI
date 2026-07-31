@@ -462,7 +462,7 @@ local function updateGrid()
 		local btn = Instance.new("TextButton")
 		local isFE = FunctionManager.ISFE[name]
 		btn.Size             = UDim2.new(1,0,0,40)
-		btn.BackgroundColor3 = Color3.fromRGB(70,10,10)
+		btn.BackgroundColor3 = Color3.fromRGB(10,70,10)
 		btn.BorderSizePixel  = 0
 		btn.Font             = Enum.Font.SourceSansBold
 		btn.TextSize         = 16
