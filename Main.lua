@@ -453,16 +453,20 @@ end
 -- Build the grid and tooltips
 local function updateGrid()
 	for _, c in ipairs(gridFrame:GetChildren()) do
-		if c:IsA("TextButton") then c:Destroy() end
+		if c:IsA("TextButton") then
+			c:Destroy()
+		end
 	end
+
 	local cat = FunctionManager:getCurrentCategory()
 	catLabel.Text = cat
 
 	for name, cb in pairs(FunctionManager.CategorizedFunctions[cat]) do
 		local btn = Instance.new("TextButton")
 		local isFE = FunctionManager.ISFE[name]
+
 		btn.Size             = UDim2.new(1,0,0,40)
-		btn.BackgroundColor3 = Color3.fromRGB(70,10,10)
+		btn.BackgroundColor3 = Color3.fromRGB(30,150,30) -- سبز
 		btn.BorderSizePixel  = 0
 		btn.Font             = Enum.Font.SourceSansBold
 		btn.TextSize         = 16
@@ -471,9 +475,30 @@ local function updateGrid()
 		btn.TextWrapped      = true
 		btn.Parent           = gridFrame
 		btn.Name             = generate_string(math_random(1, 10))
+
 		if isFE == "no" then
-			btn.BackgroundColor3 = Color3.fromRGB(72, 100, 87)
+			btn.BackgroundColor3 = Color3.fromRGB(50,180,50) -- سبز روشن‌تر
 		end
+
+		local desc = FunctionManager.Descriptions[name]
+
+		btn.MouseMoved:Connect(function()
+			if desc ~= "" and desc ~= nil then
+				tooltip.Text = desc
+				tooltip.Position = UDim2.new(0, Mouse.X, 0, Mouse.Y - tooltip.Size.Y.Offset - 4)
+				tooltip.Visible = true
+			end
+		end)
+
+		btn.MouseLeave:Connect(function()
+			tooltip.Visible = false
+		end)
+
+		btn.MouseButton1Click:Connect(function()
+			pcall(cb)
+		end)
+	end
+end
 		-- tooltip
 		local desc = FunctionManager.Descriptions[name]
 		
