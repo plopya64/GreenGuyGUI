@@ -1617,7 +1617,7 @@ FunctionManager:register("JumpPowerSlider", function()
 	track.Name                  = "Track"
 	track.Size                  = UDim2.new(1,-16,0,20)
 	track.Position              = UDim2.new(0,8,0,40)
-	track.BackgroundColor3      = Color3.fromRGB(60,60,60)
+	track.BackgroundColor3      = Color3.fromRGB(35, 70, 35)
 	track.BorderSizePixel       = 0
 	track.ZIndex                = 51
 	track.Parent                = panel
